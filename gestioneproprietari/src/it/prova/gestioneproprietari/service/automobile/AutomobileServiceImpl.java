@@ -2,37 +2,117 @@ package it.prova.gestioneproprietari.service.automobile;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import it.prova.gestioneproprietari.dao.EntityManagerUtil;
 import it.prova.gestioneproprietari.dao.automobile.AutomobileDAO;
 import it.prova.gestioneproprietari.model.Automobile;
 
 public class AutomobileServiceImpl implements AutomobileService {
+	
+	private AutomobileDAO automobileDAO;
+
+	public void setAutomobileDAO(AutomobileDAO automobileDAO) {
+		this.automobileDAO = automobileDAO;
+	}
 
 	@Override
 	public List<Automobile> listAllAutomobili() throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
-		return null;
+		try {
+
+			automobileDAO.setEntityManager(entityManager);
+
+			return automobileDAO.list();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
 	}
 
 	@Override
 	public Automobile caricaSingolaAutomobile(Long id) throws Exception {
 
-		return null;
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			automobileDAO.setEntityManager(entityManager);
+
+			return automobileDAO.get(id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
 	}
 
 	@Override
-	public void aggiorna(Automobile automobileInstance) throws Exception {
+	public void aggiorna(Automobile automobile) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			automobileDAO.setEntityManager(entityManager);
+
+			automobileDAO.update(automobile);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
 	}
 
 	@Override
-	public void inserisciNuova(Automobile automobileInstance) throws Exception {
+	public void inserisciNuova(Automobile automobile) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			entityManager.getTransaction().begin();
+
+			automobileDAO.setEntityManager(entityManager);
+
+			automobileDAO.insert(automobile);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
 	}
 
 	@Override
-	public void rimuovi(Long idAutomobileInstance) throws Exception {
-	}
+	public void rimuovi(Automobile automobile) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
-	@Override
-	public void setAutomobileDAO(AutomobileDAO automobileDAO) {
+		try {
+			entityManager.getTransaction().begin();
+
+			automobileDAO.setEntityManager(entityManager);
+
+			automobileDAO.delete(automobile);
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
 	}
 
 }

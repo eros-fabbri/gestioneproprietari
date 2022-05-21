@@ -98,11 +98,13 @@ public class TestGestioneProprietari {
 		automobileService.inserisciNuova(nuovoAutomobile);
 
 		Long idAutomobileInserito = nuovoAutomobile.getId();
-		automobileService.rimuovi(idAutomobileInserito);
+		automobileService.rimuovi(nuovoAutomobile);
 		if (automobileService.caricaSingolaAutomobile(idAutomobileInserito) != null)
 			throw new RuntimeException("testRimozioneAutomobile fallito: record non cancellato ");
 		System.out.println(".......testRimozioneAutomobile fine: PASSED.............");
 	}
+	
+	
 }
 
 

@@ -17,7 +17,7 @@ public interface AutomobileService {
 
 	public void inserisciNuova(Automobile automobileInstance) throws Exception;
 
-	public void rimuovi(Long idAutomobileInstance) throws Exception;
+	public void rimuovi(Automobile automobileInstance) throws Exception;
 	
 	public void setAutomobileDAO(AutomobileDAO automobileDAO);
 }

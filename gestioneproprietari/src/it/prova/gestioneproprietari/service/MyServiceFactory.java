@@ -1,7 +1,10 @@
 package it.prova.gestioneproprietari.service;
 
+import it.prova.gestioneproprietari.dao.MyDaoFactory;
 import it.prova.gestioneproprietari.service.automobile.AutomobileService;
+import it.prova.gestioneproprietari.service.automobile.AutomobileServiceImpl;
 import it.prova.gestioneproprietari.service.proprietario.ProprietarioService;
+import it.prova.gestioneproprietari.service.proprietario.ProprietarioServiceImpl;
 
 public class MyServiceFactory {
 

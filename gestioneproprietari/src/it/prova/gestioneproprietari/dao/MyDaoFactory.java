@@ -3,6 +3,7 @@ package it.prova.gestioneproprietari.dao;
 import it.prova.gestioneproprietari.dao.automobile.AutomobileDAO;
 import it.prova.gestioneproprietari.dao.automobile.AutomobileDAOImpl;
 import it.prova.gestioneproprietari.dao.proprietario.ProprietarioDAO;
+import it.prova.gestioneproprietari.dao.proprietario.ProprietarioDAOImpl;
 import it.prova.gestioneproprietari.model.Automobile;
 
 public class MyDaoFactory {
@@ -11,13 +12,13 @@ public class MyDaoFactory {
 	private static AutomobileDAO automobileDAOInstance = null;
 	private static ProprietarioDAO proprietarioDAOInstance = null;
 
-	public static AutomobileDAO getAbitanteDAOInstance() {
+	public static AutomobileDAO getAutomobileDAOInstance() {
 		if (automobileDAOInstance == null)
 			automobileDAOInstance = new AutomobileDAOImpl();
 		return automobileDAOInstance;
 	}
 
-	public static ProprietarioDAO getMunicipioDAOInstance(){
+	public static ProprietarioDAO getProprietarioDAOInstance(){
 		if(proprietarioDAOInstance == null)
 			proprietarioDAOInstance= new ProprietarioDAOImpl();
 		return proprietarioDAOInstance;

@@ -39,7 +39,7 @@ public class EntityManagerUtil {
 			}
 		}
 	}
-
+	//testpercommit
 	public static void shutdown() {
 		if (entityManagerFactory != null) {
 			entityManagerFactory.close();

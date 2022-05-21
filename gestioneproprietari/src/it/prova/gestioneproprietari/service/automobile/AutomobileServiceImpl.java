@@ -9,13 +9,13 @@ public class AutomobileServiceImpl implements AutomobileService {
 
 	@Override
 	public List<Automobile> listAllAutomobili() throws Exception {
-		
+
 		return null;
 	}
 
 	@Override
 	public Automobile caricaSingolaAutomobile(Long id) throws Exception {
-		
+
 		return null;
 	}
 

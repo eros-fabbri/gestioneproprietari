@@ -96,13 +96,10 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
-			// questo è come il MyConnection.getConnection()
 			entityManager.getTransaction().begin();
 
-			// uso l'injection per il dao
 			proprietarioDAO.setEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
 			proprietarioDAO.insert(proprietario);
 
 			entityManager.getTransaction().commit();
@@ -117,17 +114,13 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 
 	@Override
 	public void rimuovi(Proprietario proprietario) throws Exception {
-		// questo è come una connection
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
 		try {
-			// questo è come il MyConnection.getConnection()
 			entityManager.getTransaction().begin();
 
-			// uso l'injection per il dao
 			proprietarioDAO.setEntityManager(entityManager);
 
-			// eseguo quello che realmente devo fare
 			proprietarioDAO.delete(proprietario);
 
 			entityManager.getTransaction().commit();

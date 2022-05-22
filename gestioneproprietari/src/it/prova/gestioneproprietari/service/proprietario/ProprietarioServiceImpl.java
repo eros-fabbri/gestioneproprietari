@@ -132,5 +132,20 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
+	public long countQuantiHannoAutomobileImmatricolataDal(int annoImmatricolazione) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			proprietarioDAO.setEntityManager(entityManager);
+
+			return proprietarioDAO.countQuantiHannoAutomobileImmatricolataDal(annoImmatricolazione);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
 
 }

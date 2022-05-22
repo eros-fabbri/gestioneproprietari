@@ -20,4 +20,6 @@ public interface ProprietarioService {
 	public void rimuovi(Proprietario proprietario) throws Exception;
 
 	public void setProprietarioDAO(ProprietarioDAO proprietarioDAO);
+	
+	public long countQuantiHannoAutomobileImmatricolataDal(int annoImmatricolazione) throws Exception;
 }

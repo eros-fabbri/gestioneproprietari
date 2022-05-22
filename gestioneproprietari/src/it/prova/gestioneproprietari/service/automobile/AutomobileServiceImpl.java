@@ -9,7 +9,7 @@ import it.prova.gestioneproprietari.dao.automobile.AutomobileDAO;
 import it.prova.gestioneproprietari.model.Automobile;
 
 public class AutomobileServiceImpl implements AutomobileService {
-	
+
 	private AutomobileDAO automobileDAO;
 
 	public void setAutomobileDAO(AutomobileDAO automobileDAO) {
@@ -108,6 +108,42 @@ public class AutomobileServiceImpl implements AutomobileService {
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public List<Automobile> getListaAutomobiliDaProprietariConCodiceFiscaleIniziaCon(String inizioCF) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+
+			automobileDAO.setEntityManager(entityManager);
+
+			return automobileDAO.getListaAutomobiliDaProprietariConCodiceFiscaleIniziaCon(inizioCF);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public List<Automobile> getAutomobiliErroreProprietarioMinorenne() throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+
+			automobileDAO.setEntityManager(entityManager);
+
+			return automobileDAO.getAutomobiliErroreProprietarioMinorenne();
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {

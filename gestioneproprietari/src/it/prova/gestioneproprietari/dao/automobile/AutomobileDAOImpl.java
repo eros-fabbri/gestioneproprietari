@@ -3,6 +3,8 @@ package it.prova.gestioneproprietari.dao.automobile;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import it.prova.gestioneproprietari.model.Automobile;
 
@@ -51,7 +53,30 @@ public class AutomobileDAOImpl implements AutomobileDAO {
 
 		entityManager.remove(entityManager.merge(automobile));
 	}
-	
-	//implementare altri metodi
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Automobile> getListaAutomobiliDaProprietariConCodiceFiscaleIniziaCon(String inizioCF) throws Exception {
+		if (inizioCF == null) {
+			throw new Exception("Problema valore in input");
+		}
+
+		Query query = entityManager
+				.createQuery("from Automobile a join a.proprietario p where p.codiceFiscale  like ?1");
+		query.setParameter(1, inizioCF + "%");
+		System.out.println(query);
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Automobile> getAutomobiliErroreProprietarioMinorenne() throws Exception {
+
+		Query query = entityManager.createQuery(
+				"select a from Automobile a join a.proprietario p where year(curdate())-year(p.dataNascita)<18 ",
+				Automobile.class);
+		return query.getResultList();
+
+	}
 
 }
